@@ -8,9 +8,6 @@ canvas.height = rect.height
 
 const context = canvas.getContext('2d')!
 
-context.fillStyle = '#111'
-context.fillRect(0, 0, canvas.width, canvas.height)
-
 function fill_circle({
   x,
   y,
@@ -47,4 +44,13 @@ const visual_circles = times(10, (i) => {
   return <visual_circle>{ x, y, r, color }
 })
 
-visual_circles.forEach(fill_circle)
+function render(timestamp: number) {
+  context.clearRect(9, 0, canvas.width, canvas.height)
+  context.fillStyle = '#111'
+  context.fillRect(0, 0, canvas.width, canvas.height)
+  visual_circles.forEach(fill_circle)
+
+  window.requestAnimationFrame(render)
+}
+
+window.requestAnimationFrame(render)
