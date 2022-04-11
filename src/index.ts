@@ -1,3 +1,6 @@
+import { random, times } from 'lodash'
+import * as _ from 'lodash/fp'
+
 const canvas = document.querySelector('canvas')!
 const rect = canvas.getBoundingClientRect()
 canvas.width = rect.width
@@ -26,5 +29,11 @@ function fill_circle({
   context.closePath()
 }
 
-const r = Math.min(canvas.width, canvas.height) / 4
-fill_circle({ r, x: canvas.width / 2, y: canvas.height / 2, color: 'pink' })
+const base_r = Math.min(canvas.width, canvas.height) / 10
+
+times(10, (i) => {
+  const r = base_r + random(base_r / 4, base_r, true)
+  const x = r + random(canvas.width - r * 2)
+  const y = r + random(canvas.height - r * 2)
+  fill_circle({ r, x, y, color: 'pink' })
+})
