@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/tylerschloesser/probable-guide#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.181",
     "html-webpack-plugin": "^5.5.0",
+    "lodash": "^4.17.21",
     "prettier": "^2.6.2",
     "ts-loader": "^9.2.8",
     "ts-node": "^10.7.0",
