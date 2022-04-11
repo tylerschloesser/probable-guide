@@ -1,0 +1,20 @@
+{
+  "name": "probable-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerschloesser/probable-guide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylerschloesser/probable-guide/issues"
+  },
+  "homepage": "https://github.com/tylerschloesser/probable-guide#readme"
+}
