@@ -31,9 +31,20 @@ function fill_circle({
 
 const base_r = Math.min(canvas.width, canvas.height) / 10
 
-times(10, (i) => {
+interface visual_circle {
+  x: number
+  y: number
+  r: number
+  color: string
+}
+
+const visual_circles = times(10, (i) => {
   const r = base_r + random(base_r / 4, base_r, true)
   const x = r + random(canvas.width - r * 2)
   const y = r + random(canvas.height - r * 2)
-  fill_circle({ r, x, y, color: 'pink' })
+  const opacity = random(255).toString(16)
+  const color = `#ff0000${opacity}`
+  return <visual_circle>{ x, y, r, color }
 })
+
+visual_circles.forEach(fill_circle)
