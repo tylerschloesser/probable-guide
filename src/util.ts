@@ -13,6 +13,6 @@ export function calc_motion_window(motion: MotionEntry[], window_ms: number) {
 
   return {
     dx: Math.abs(a.x - b.x),
-    dy: Math.abs(a.y - b.y),
+    dy: Math.abs(a.x - b.x),
   }
 }
