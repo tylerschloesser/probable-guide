@@ -1,5 +1,6 @@
 import { random, times } from 'lodash'
 import { MotionEntry } from './common'
+import { calc_motion_window } from './util'
 
 const canvas = document.querySelector('canvas')!
 const rect = canvas.getBoundingClientRect()
@@ -93,9 +94,11 @@ function render(timestamp: number) {
     context.closePath()
   }
 
+  const motion_window = calc_motion_window(motion, 100 /* ms */)
+
   context.fillStyle = 'white'
   context.font = '20px serif'
-  context.fillText('test', 0, 20)
+  context.fillText(JSON.stringify(motion_window), 0, 20)
 
   window.requestAnimationFrame(render)
 }
@@ -103,7 +106,7 @@ function render(timestamp: number) {
 window.requestAnimationFrame(render)
 
 canvas.addEventListener('mousemove', (e) => {
-  motion.push({ x: e.x, y: e.y, timestamp: e.timeStamp })
+  motion.unshift({ x: e.x, y: e.y, timestamp: e.timeStamp })
 })
 
 canvas.addEventListener('mousedown', () => {
