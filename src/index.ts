@@ -1,5 +1,5 @@
 import { random, times } from 'lodash'
-import * as _ from 'lodash/fp'
+import { MotionEntry } from './common'
 
 const canvas = document.querySelector('canvas')!
 const rect = canvas.getBoundingClientRect()
@@ -9,7 +9,7 @@ canvas.height = rect.height
 const context = canvas.getContext('2d')!
 
 let mousedown = false
-let motion: { x: number; y: number; timestamp: number }[] = []
+let motion: MotionEntry[] = []
 
 function fill_circle({
   x,
@@ -92,6 +92,8 @@ function render(timestamp: number) {
     context.stroke()
     context.closePath()
   }
+
+  const v_window = 100 // ms
 
   context.fillStyle = 'white'
   context.font = '20px serif'
