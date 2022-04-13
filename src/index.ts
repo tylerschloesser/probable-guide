@@ -96,7 +96,7 @@ function render(timestamp: number) {
 
   const box_h = 40
   const box_w = box_h * 5
-  const dp = calc_motion_window(motion, 200, timestamp)
+  const { dp } = calc_motion_window(motion, 200, timestamp)
   const perc = Math.min(dp / Math.max(canvas.width, canvas.height), 1)
   context.beginPath()
   context.fillStyle = 'green'

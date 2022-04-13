@@ -16,5 +16,5 @@ export function calc_motion_window(
     const dy = a.y - b.y
     dp += Math.sqrt(dx * dx + dy * dy)
   }
-  return dp
+  return { dp }
 }
