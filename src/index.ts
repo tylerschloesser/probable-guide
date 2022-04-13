@@ -66,6 +66,8 @@ function render(timestamp: number) {
     }))
     .forEach(fill_circle)
 
+  motion = motion.filter((m) => timestamp - m.timestamp < 1000)
+
   context.strokeStyle = 'blue'
   context.beginPath()
   for (let i = 0; i < motion.length - 1; i++) {
