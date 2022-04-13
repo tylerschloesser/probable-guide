@@ -93,6 +93,10 @@ function render(timestamp: number) {
     context.closePath()
   }
 
+  context.fillStyle = 'white'
+  context.font = '20px serif'
+  context.fillText('test', 0, 20)
+
   window.requestAnimationFrame(render)
 }
 
