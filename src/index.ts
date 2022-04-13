@@ -8,6 +8,7 @@ canvas.height = rect.height
 
 const context = canvas.getContext('2d')!
 
+let mousedown = false
 let motion: { x: number; y: number; timestamp: number }[] = []
 
 function fill_circle({
@@ -68,15 +69,18 @@ function render(timestamp: number) {
 
   motion = motion.filter((m) => timestamp - m.timestamp < 1000)
 
-  context.strokeStyle = 'blue'
-  context.beginPath()
-  for (let i = 0; i < motion.length - 1; i++) {
-    const a = motion[i]
-    const b = motion[i + 1]
-    context.moveTo(a.x, a.y)
-    context.lineTo(b.x, b.y)
+  if (mousedown) {
+    context.strokeStyle = 'blue'
+    context.beginPath()
+    for (let i = 0; i < motion.length - 1; i++) {
+      const a = motion[i]
+      const b = motion[i + 1]
+      context.moveTo(a.x, a.y)
+      context.lineTo(b.x, b.y)
+    }
+    context.stroke()
+    context.closePath()
   }
-  context.stroke()
 
   if (motion.length > 1) {
     context.strokeStyle = 'lightblue'
@@ -86,6 +90,7 @@ function render(timestamp: number) {
     context.moveTo(a.x, a.y)
     context.lineTo(b.x, b.y)
     context.stroke()
+    context.closePath()
   }
 
   window.requestAnimationFrame(render)
@@ -95,4 +100,16 @@ window.requestAnimationFrame(render)
 
 canvas.addEventListener('mousemove', (e) => {
   motion.push({ x: e.x, y: e.y, timestamp: e.timeStamp })
+})
+
+canvas.addEventListener('mousedown', () => {
+  mousedown = true
+})
+
+canvas.addEventListener('mouseleave', () => {
+  mousedown = false
+})
+
+canvas.addEventListener('mouseup', () => {
+  mousedown = false
 })
