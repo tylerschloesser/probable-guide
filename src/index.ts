@@ -96,7 +96,7 @@ function render(timestamp: number) {
 
   const box_h = 40
   const box_w = box_h * 5
-  const { dp } = calc_motion_window(motion, 200, timestamp)
+  const { dp, theta } = calc_motion_window(motion, 200, timestamp)
   const perc = Math.min(dp / Math.max(canvas.width, canvas.height), 1)
   context.beginPath()
   context.fillStyle = 'green'
@@ -107,7 +107,7 @@ function render(timestamp: number) {
 
   context.fillStyle = 'white'
   context.font = '20px serif'
-  context.fillText('todo', 0, 20)
+  context.fillText(theta.toFixed(2), 0, 20)
 
   window.requestAnimationFrame(render)
 }
