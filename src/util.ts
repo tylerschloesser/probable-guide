@@ -1,6 +1,10 @@
 import { MotionEntry } from './common'
 
-export function calc_motion_window(motion: MotionEntry[], window_ms: number) {
+export function calc_motion_window(
+  motion: MotionEntry[],
+  window_ms: number,
+  now_ms: number,
+) {
   if (motion.length < 2) {
     return {
       dx: 0,
@@ -8,10 +12,9 @@ export function calc_motion_window(motion: MotionEntry[], window_ms: number) {
     }
   }
 
-  const start_ms = motion[0].timestamp
   let i = 1
   for (; i < motion.length; i++) {
-    if (motion[i].timestamp - start_ms > window_ms) {
+    if (now_ms - motion[i].timestamp > window_ms) {
       break
     }
   }

@@ -94,7 +94,24 @@ function render(timestamp: number) {
     context.closePath()
   }
 
-  const motion_window = calc_motion_window(motion, 100 /* ms */)
+  const box_h = 40
+  const box_w = box_h * 5
+  const motion_window = calc_motion_window(motion, box_w, timestamp)
+  const perc_x = motion_window.dx / canvas.width
+  context.beginPath()
+  context.fillStyle = 'green'
+  context.fillRect(0, canvas.height - box_h, box_w * perc_x, box_h)
+  context.strokeStyle = 'white'
+  context.strokeRect(0, canvas.height - box_h, box_w, box_h)
+  context.closePath()
+
+  const perc_y = motion_window.dy / canvas.height
+  context.beginPath()
+  context.fillStyle = 'green'
+  context.fillRect(0, canvas.height - box_h * 2, box_w * perc_y, box_h)
+  context.strokeStyle = 'white'
+  context.strokeRect(0, canvas.height - box_h * 2, box_w, box_h)
+  context.closePath()
 
   context.fillStyle = 'white'
   context.font = '20px serif'
