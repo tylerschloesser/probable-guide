@@ -37,7 +37,7 @@ interface visual_circle {
   vy: number
 }
 
-const visual_circles: visual_circle[] = times(10, (i) => {
+const visual_circles: visual_circle[] = times(10, () => {
   const r = base_r + random(base_r / 4, base_r, true)
   const x = r + random(canvas.width - r * 2)
   const y = r + random(canvas.height - r * 2)
