@@ -8,6 +8,8 @@ canvas.height = rect.height
 
 const context = canvas.getContext('2d')!
 
+let motion: { x: number; y: number; timestamp: number }[] = []
+
 function fill_circle({
   x,
   y,
@@ -64,7 +66,21 @@ function render(timestamp: number) {
     }))
     .forEach(fill_circle)
 
+  context.strokeStyle = 'blue'
+  context.beginPath()
+  for (let i = 0; i < motion.length - 1; i++) {
+    const a = motion[i]
+    const b = motion[i + 1]
+    context.moveTo(a.x, a.y)
+    context.lineTo(b.x, b.y)
+  }
+  context.stroke()
+
   window.requestAnimationFrame(render)
 }
 
 window.requestAnimationFrame(render)
+
+canvas.addEventListener('mousemove', (e) => {
+  motion.push({ x: e.x, y: e.y, timestamp: e.timeStamp })
+})
