@@ -78,6 +78,16 @@ function render(timestamp: number) {
   }
   context.stroke()
 
+  if (motion.length > 1) {
+    context.strokeStyle = 'lightblue'
+    context.beginPath()
+    const a = motion[0]
+    const b = motion[motion.length - 1]
+    context.moveTo(a.x, a.y)
+    context.lineTo(b.x, b.y)
+    context.stroke()
+  }
+
   window.requestAnimationFrame(render)
 }
 
