@@ -7,4 +7,12 @@ export function calc_motion_window(motion: MotionEntry[], window_ms: number) {
       dy: 0,
     }
   }
+
+  const a = motion[0]
+  const b = motion[motion.length - 1]
+
+  return {
+    dx: Math.abs(a.x - b.x),
+    dy: Math.abs(a.y - b.y),
+  }
 }
