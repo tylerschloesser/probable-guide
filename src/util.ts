@@ -5,25 +5,16 @@ export function calc_motion_window(
   window_ms: number,
   now_ms: number,
 ) {
-  if (motion.length < 2) {
-    return {
-      dx: 0,
-      dy: 0,
-    }
-  }
-
-  let i = 1
-  for (; i < motion.length; i++) {
-    if (now_ms - motion[i].timestamp > window_ms) {
+  let dp = 0
+  for (let i = 0; i < motion.length - 2; i++) {
+    const a = motion[i]
+    const b = motion[i + 1]
+    if (now_ms - b.timestamp > window_ms) {
       break
     }
+    const dx = a.x - b.x
+    const dy = a.y - b.y
+    dp += Math.sqrt(dx * dx + dy * dy)
   }
-
-  const a = motion[0]
-  const b = motion[i - 1]
-
-  return {
-    dx: Math.abs(a.x - b.x),
-    dy: Math.abs(a.y - b.y),
-  }
+  return dp
 }
