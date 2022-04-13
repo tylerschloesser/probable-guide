@@ -107,7 +107,19 @@ function render(timestamp: number) {
 
   context.fillStyle = 'white'
   context.font = '20px serif'
-  context.fillText(theta.toFixed(2), 0, 20)
+  context.fillText(theta ? theta.toFixed(2) : 'null', 0, 20)
+
+  const r = 100
+  context.beginPath()
+  context.arc(r, canvas.height - box_h - r, r, 0, Math.PI * 2)
+  if (theta !== null) {
+    context.moveTo(r, canvas.height - box_h - r)
+    const to_x = Math.cos(theta) * r
+    const to_y = Math.sin(theta) * r
+    context.lineTo(r + to_x, canvas.height - box_h - r + to_y)
+  }
+  context.stroke()
+  context.closePath()
 
   window.requestAnimationFrame(render)
 }

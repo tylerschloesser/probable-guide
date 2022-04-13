@@ -23,10 +23,10 @@ export function calc_motion_window(
     dp += Math.sqrt(dx * dx + dy * dy)
   }
 
-  let theta = 0
+  let theta: number | null = null
   if (count > 0) {
     theta = theta_sum / count
   }
 
-  return { dp, theta}
+  return { dp, theta }
 }
