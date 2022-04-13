@@ -93,8 +93,6 @@ function render(timestamp: number) {
     context.closePath()
   }
 
-  const v_window = 100 // ms
-
   context.fillStyle = 'white'
   context.font = '20px serif'
   context.fillText('test', 0, 20)
