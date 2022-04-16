@@ -1,5 +1,5 @@
-import { random, times } from 'lodash'
-import { MotionEntry, visual_circle } from './common'
+import { initBackground } from '../background'
+import { MotionEntry } from './common'
 import { calc_motion_window } from './util'
 
 const canvas = document.querySelector('canvas')!
@@ -30,20 +30,7 @@ function fill_circle({
   context.closePath()
 }
 
-const base_r = Math.min(canvas.width, canvas.height) / 10
-
-const visual_circles: visual_circle[] = times(10, () => {
-  const r = base_r + random(base_r / 4, base_r, true)
-  const x = r + random(canvas.width - r * 2)
-  const y = r + random(canvas.height - r * 2)
-  const opacity = random(16).toString(16)
-  const color = `#ff0000${opacity}`
-  const speed = random(r / 128, r, true)
-  const angle = random(Math.PI * 2, true)
-  const vx = Math.cos(angle) * speed
-  const vy = Math.sin(angle) * speed
-  return { x, y, r, color, vx, vy }
-})
+const { visual_circles } = initBackground(canvas)
 
 const last_timestamp = 0
 function render(timestamp: number) {
