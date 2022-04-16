@@ -21,6 +21,9 @@ export function calc_motion_window(
     count++
 
     dp += Math.sqrt(dx * dx + dy * dy)
+
+    // TODO this hack only uses the last entry
+    break
   }
 
   let theta: number | null = null
