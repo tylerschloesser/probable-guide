@@ -29,7 +29,7 @@ export function updateBackground(
   visual_circles: visual_circle[],
   dt: number,
 ) {
-  visual_circles.forEach((vc) => {
+  visual_circles.forEach((vc, i) => {
     vc.x = vc.x + (vc.vx * dt) / 1000
     vc.y = vc.y + (vc.vy * dt) / 1000
 
@@ -39,6 +39,7 @@ export function updateBackground(
       vc.y < -vc.r ||
       vc.y > canvas.height + vc.r
     ) {
+      visual_circles[i] = generate(canvas)
     }
   })
 }
