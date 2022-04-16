@@ -17,7 +17,7 @@ export function calc_motion_window(
     const dx = a.x - b.x
     const dy = a.y - b.y
 
-    theta_sum += Math.atan(dy / dx)
+    theta_sum += Math.atan2(dy, dx)
     count++
 
     dp += Math.sqrt(dx * dx + dy * dy)
