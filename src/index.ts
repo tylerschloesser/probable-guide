@@ -1,5 +1,5 @@
 import { random, times } from 'lodash'
-import { MotionEntry } from './common'
+import { MotionEntry, visual_circle } from './common'
 import { calc_motion_window } from './util'
 
 const canvas = document.querySelector('canvas')!
@@ -31,15 +31,6 @@ function fill_circle({
 }
 
 const base_r = Math.min(canvas.width, canvas.height) / 10
-
-interface visual_circle {
-  x: number
-  y: number
-  r: number
-  color: string
-  vx: number
-  vy: number
-}
 
 const visual_circles: visual_circle[] = times(10, () => {
   const r = base_r + random(base_r / 4, base_r, true)
