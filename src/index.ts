@@ -1,4 +1,4 @@
-import { initBackground } from '../background'
+import { initBackground, updateBackground } from '../background'
 import { MotionEntry } from './common'
 import { calc_motion_window } from './util'
 
@@ -32,19 +32,16 @@ function fill_circle({
 
 const { visual_circles } = initBackground(canvas)
 
-const last_timestamp = 0
+let last_timestamp = 0
 function render(timestamp: number) {
   const dt = timestamp - last_timestamp
+  last_timestamp = timestamp
+
   context.clearRect(9, 0, canvas.width, canvas.height)
   context.fillStyle = '#111'
   context.fillRect(0, 0, canvas.width, canvas.height)
-  visual_circles
-    .map((vc) => ({
-      ...vc,
-      x: vc.x + (vc.vx * dt) / 1000,
-      y: vc.y + (vc.vy * dt) / 1000,
-    }))
-    .forEach(fill_circle)
+  updateBackground(canvas, visual_circles, dt)
+  visual_circles.forEach(fill_circle)
 
   motion = motion.filter((m) => timestamp - m.timestamp < 1000)
 

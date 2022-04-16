@@ -23,4 +23,13 @@ export function initBackground(canvas: HTMLCanvasElement) {
   return { visual_circles }
 }
 
-export function updateBackground(visual_circles: visual_circle[], dt: number) {}
+export function updateBackground(
+  canvas: HTMLCanvasElement,
+  visual_circles: visual_circle[],
+  dt: number,
+) {
+  visual_circles.forEach((vc) => {
+    vc.x = vc.x + (vc.vx * dt) / 1000
+    vc.y = vc.y + (vc.vy * dt) / 1000
+  })
+}
