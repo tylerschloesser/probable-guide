@@ -17,13 +17,12 @@ export function calc_motion_window(
     const dx = a.x - b.x
     const dy = a.y - b.y
 
-    theta_sum += Math.atan2(dy, dx)
-    count++
+    if (i === 0) {
+      theta_sum += Math.atan2(dy, dx)
+      count++
+    }
 
     dp += Math.sqrt(dx * dx + dy * dy)
-
-    // TODO this hack only uses the last entry
-    break
   }
 
   let theta: number | null = null
